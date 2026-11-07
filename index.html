@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090b14" />
+    <meta name="description" content="Συνδέσου και δες τα παιχνίδια σου." />
+    <title>hub44ty.com</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="portal.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Αρχική">
+        <span class="brand-icon" aria-hidden="true">44ty</span>
+        <span>PLAY<span class="brand-accent">ROOM</span></span>
+      </a>
+      <div id="account-bar" class="account-bar" hidden>
+        <span class="online-dot" aria-hidden="true"></span>
+        <span id="welcome-user"></span>
+        <button id="logout-button" class="logout-button" type="button">Αποσύνδεση</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="login-view" class="login-layout">
+        <div class="intro">
+          <span class="eyebrow"><span class="sparkle" aria-hidden="true">✦</span> Ο δικός σου gaming χώρος</span>
+          <h1>Τα παιχνίδια σου.<br /><span>Στο δικό σου μέρος.</span></h1>
+          <p>Συνδέσου για να ανοίξεις την προσωπική σου βιβλιοθήκη παιχνιδιών.</p>
+          <div class="feature-list" aria-label="Χαρακτηριστικά">
+            <div><span class="feature-icon">01</span><span>Η δική σου συλλογή</span></div>
+            <div><span class="feature-icon">02</span><span>Όλα συγκεντρωμένα</span></div>
+            <div><span class="feature-icon">03</span><span>Έτοιμα για παιχνίδι</span></div>
+          </div>
+        </div>
+
+        <form id="login-form" class="login-card" autocomplete="on">
+          <div class="card-symbol" aria-hidden="true">↗</div>
+          <span class="card-kicker">Καλώς ήρθες πίσω</span>
+          <h2>Σύνδεση</h2>
+          <p class="card-description">Συμπλήρωσε τα στοιχεία του λογαριασμού σου.</p>
+
+          <label for="username">Όνομα χρήστη</label>
+          <input id="username" name="username" type="text" placeholder="π.χ. player" autocomplete="username" required />
+
+          <label for="password">Κωδικός πρόσβασης</label>
+          <div class="password-wrap">
+            <input id="password" name="password" type="password" placeholder="Ο κωδικός σου" autocomplete="current-password" required />
+            <button id="toggle-password" class="password-toggle" type="button" aria-label="Εμφάνιση κωδικού">Εμφάνιση</button>
+          </div>
+
+          <button class="submit-button" type="submit">Μπες στη βιβλιοθήκη <span aria-hidden="true">→</span></button>
+          <p class="demo-note">Δοκιμαστική έκδοση — δεν παρέχει πραγματική ασφάλεια λογαριασμού.</p>
+          <p id="credential-status" class="credential-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="library-view" class="library-view" hidden>
+        <div class="library-heading">
+          <div>
+            <span class="eyebrow"><span class="sparkle" aria-hidden="true">✦</span> Η συλλογή σου</span>
+            <h1>Ώρα για <span>παιχνίδι.</span></h1>
+            <p>Τα παιχνίδια σου, όλα σε ένα μέρος.</p>
+          </div>
+          <div class="library-actions">
+            <div class="library-count"><strong id="game-count">0</strong><span>παιχνίδια</span></div>
+            <button id="add-game-button" class="add-game-button" type="button" aria-expanded="false" aria-controls="add-game-form">
+              <span aria-hidden="true">+</span> Προσθήκη παιχνιδιού
+            </button>
+          </div>
+        </div>
+        <form id="add-game-form" class="add-game-form" hidden>
+          <h2>Νέο παιχνίδι</h2>
+          <p>Τα παιχνίδια αποθηκεύονται μόνο σε αυτόν τον browser και δεν συγχρονίζονται. Η δοκιμαστική σύνδεση δεν προστατεύει τη διαχείριση από άλλους χρήστες.</p>
+          <label for="game-name">Όνομα παιχνιδιού</label>
+          <input id="game-name" name="game-name" type="text" placeholder="π.χ. Minecraft" maxlength="80" required />
+          <label for="game-url">URL παιχνιδιού</label>
+          <input id="game-url" name="game-url" type="url" placeholder="https://example.com" required />
+          <p id="game-form-status" class="game-form-status" role="status" aria-live="polite"></p>
+          <div class="game-form-actions">
+            <button class="submit-button" type="submit">Προσθήκη <span aria-hidden="true">→</span></button>
+            <button id="cancel-add-game" class="cancel-button" type="button">Ακύρωση</button>
+          </div>
+        </form>
+        <div id="game-list" class="game-grid"></div>
+        <div id="empty-library" class="empty-state" hidden>
+          <span class="empty-icon" aria-hidden="true">⌁</span>
+          <h2>Η βιβλιοθήκη είναι έτοιμη.</h2>
+          <p>Δεν έχουν προστεθεί παιχνίδια ακόμα. Πάτησε «Προσθήκη παιχνιδιού» για να ξεκινήσεις.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>PLAYROOM <span class="footer-dot">•</span> Η προσωπική σου βιβλιοθήκη</span>
+      <span>© <span id="year"></span></span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
